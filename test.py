@@ -1,11 +1,11 @@
 import streamlit as st
 from datetime import datetime
 import pandas as pd
-import datetime
+from datetime import datetime
 import math
 import openpyxl
 
-today = datetime.datetime.today()#获取日期
+today = datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
 quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
 
@@ -20,19 +20,13 @@ col_me1.metric(
     value=str(int(df[quarter_today].iloc[3]))+" %",
     delta=str(int(df[month_today].iloc[3]))+" %"
     )
-col_me1.metric(
+col_me2.metric(
     label="平湖",
     value=str(int(df[quarter_today].iloc[14]))+" %",
     delta=str(int(df[month_today].iloc[14]))+" %"
     )
-col_me1.metric(
+col_me3.metric(
     label="海盐",
     value=str(int(df[quarter_today].iloc[9]))+" %",
     delta=str(int(df[month_today].iloc[9]))+" %"
     )
-
-start_time = st.slider(
-    "When do you start?",
-    value=datetime(2020, 1, 1, 9, 30),
-    format="MM/DD/YY - hh:mm")
-st.write("Start time:", start_time)
