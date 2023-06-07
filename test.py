@@ -46,7 +46,7 @@ def kdz_data():
     # 客单数据
     st.header("客单值及配套率")
     st.write("数据日期：2023年1月1日-2023年5月31日")
-    df_kdz = pd.read_excel(r"C:\Users\D2652\Desktop\workdata\KDZ.xlsx",index_col=0)
+    df_kdz = pd.read_excel("KDZ.xlsx",index_col=0)
     df_kdz = df_kdz.set_index("门店")
     col_kdz1,col_kdz2 = st.columns(2)
     with col_kdz1:
