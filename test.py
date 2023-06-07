@@ -62,7 +62,7 @@ with st.sidebar:
 if choose == "客单值及配套率":
     secret_run = '1919'
     secret_input = st.text_input("请输入密码：")
-    if len(secret_run) > 0 and secret_input == st.secrets["secrets"]["kdz_secret"]:
+    if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
         st.success("密码正确！", icon="✅")
         kdz_data()
     else:
@@ -70,7 +70,7 @@ if choose == "客单值及配套率":
 elif choose == "出货数据":
     secret_run = "1919"
     secret_input = st.text_input("请输入密码：")
-    if len(secret_run) > 0 and secret_input == st.secrets["secrets"]["ch_secret"]:
+    if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
         st.success("密码正确！", icon="✅")
         ch_data()
     else:
