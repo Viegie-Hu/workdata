@@ -24,23 +24,23 @@ def ch_data():
     col_me0,col_me1,col_me2,col_me3 = st.columns(4)
     col_me0.metric(
         label="嘉兴地区（含海盐/平湖）",
-        value=str(df[quarter_today].iloc[17]*100)+" %",
-        delta=str(df[month_today].iloc[17]*100)+" %",
+        value=str(int(df[quarter_today].iloc[17]*100))+" %",
+        delta=str(int(df[month_today].iloc[17]*100))+" %",
         )
     col_me1.metric(
         label="嘉兴/海宁/桐乡",
-        value=str(df[quarter_today].iloc[2]*100)+" %",
-        delta=str(df[month_today].iloc[2]*100)+" %",
+        value=str(int(df[quarter_today].iloc[2]*100))+" %",
+        delta=str(int(df[month_today].iloc[2]*100))+" %",
         )
     col_me2.metric(
         label="平湖",
-        value=str(df[quarter_today].iloc[12]*100)+" %",
-        delta=str(df[month_today].iloc[12]*100)+" %",
+        value=str(int(df[quarter_today].iloc[12]*100))+" %",
+        delta=str(int(df[month_today].iloc[12]*100))+" %",
         )
     col_me3.metric(
         label="海盐",
-        value=str(df[quarter_today].iloc[7]*100)+" %",
-        delta=str(df[month_today].iloc[7]*100)+" %",)
+        value=str(int(df[quarter_today].iloc[7]*100))+" %",
+        delta=str(int(df[month_today].iloc[7]*100))+" %",)
     st.dataframe(df)
 def kdz_data():
     # 客单数据
