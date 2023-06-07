@@ -53,7 +53,7 @@ def kdz_data():
         st.bar_chart(df_kdz["配套率."])
     with col_kdz2:
         st.bar_chart(df_kdz["客单值/万"])
-    st.dataframe(df_kdz)
+    st.dataframe(df_kdz.iloc[:,:-1])
 
 with st.sidebar:
     choose = st.sidebar.selectbox(
