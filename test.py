@@ -13,8 +13,8 @@ quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
 
 def xs_data():
     st.header("销售数据公示")
-    name = "daydata.csv"
-    a_today = Daydata(name)
+    #name = os.path.abspath(r"C:\Users\D2652\Desktop\workdata\daydata.csv")
+    a_today = Daydata("daydata.csv")
     df_today,df_all=a_today.ta_data()
     #每日数据排名
     st.subheader("当日销售数据排名")
