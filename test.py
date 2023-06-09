@@ -5,11 +5,54 @@ from datetime import datetime
 import math
 import openpyxl
 import time
-
+from DayData import Daydata
+import os
+import plotly.figure_factory as ff
 today = datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
 quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
 
+def xs_data():
+    st.header("销售数据公示")
+    name = "daydata.csv"
+    a_today = Daydata(name)
+    df_today,df_all=a_today.ta_data()
+    #每日数据排名
+    st.subheader("当日销售数据排名")
+    st.text(str(today))
+    col_data0,col_data1 = st.columns(2)
+    with col_data0:
+        indcol0 = st.selectbox(
+            "请选择门店或销售：",
+            ('门店',"销售"),
+            key=0)
+    with col_data1:
+        indcol1 = st.selectbox(
+            "请选择想要查看的项目：",
+            ("接待","电销","留资（电话）","加微","售卡","派函","开单","销售额"),
+            key=1)
+    df_today = df_today.set_index(indcol0)
+    st.bar_chart(df_today[indcol1])
+    #st.pyplot(a_today.draw_ta(df_today))
+    st.dataframe(df_today.iloc[:,:-1])
+    st.divider()
+    # 累计数据排名
+    st.subheader("累计销售数据排名")
+    col_data2,col_data3 = st.columns(2)
+    with col_data2:
+        indcol2 = st.selectbox(
+            "请选择门店或销售：",
+            ('门店',"销售"),
+            key=2)
+    with col_data3:
+        indcol3 = st.selectbox(
+            "请选择想要查看的项目：",
+            ("接待","电销","留资（电话）","加微","售卡","派函","开单","销售额"),
+            key=3)
+    #st.pyplot(a_today.draw_ta(df_all))
+    df_all = df_all.set_index(indcol2)
+    st.bar_chart(df_all[indcol3])
+    st.dataframe(df_all)
 def ch_data():
     # 出货数据
     st.header("出货数据")
@@ -58,8 +101,12 @@ def kdz_data():
 with st.sidebar:
     choose = st.sidebar.selectbox(
         "选择事项",
-        ("出货数据","客单值及配套率","文件检索"))
-if choose == "客单值及配套率":
+        ("销售数据","出货数据","客单值及配套率","文件检索"))
+
+if choose == "销售数据":
+    xs_data()
+    pass
+elif choose == "客单值及配套率":
     secret_run = '1919'
     secret_input = st.text_input("请输入密码：")
     if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
