@@ -7,7 +7,6 @@ import openpyxl
 import time
 from DayData import Daydata
 import os
-import plotly.figure_factory as ff
 today = datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
 quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
