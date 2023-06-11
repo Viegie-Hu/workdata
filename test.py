@@ -112,7 +112,7 @@ if choose == "销售数据":
     pass
 elif choose == "HJH客单值&配套率":
     secret_input = st.text_input("请输入密码：")
-    if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
+    if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
         st.success("密码正确！", icon="✅")
         st.header("杭嘉湖地区相关数据")
         hjh_kdz_col0,hjh_kdz_col1 = st.columns(2)
@@ -137,14 +137,14 @@ elif choose == "HJH客单值&配套率":
         st.error("请输入或更正密码！", icon="🚨")
 elif choose == "J客单值&配套率":
     secret_input = st.text_input("请输入密码：")
-    if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
+    if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
         st.success("密码正确！", icon="✅")
         kdz_data()
     else:
         st.error("请输入或更正密码！", icon="🚨")
 elif choose == "出货数据":
     secret_input = st.text_input("请输入密码：")
-    if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
+    if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
         st.success("密码正确！", icon="✅")
         ch_data()
     else:
