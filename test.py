@@ -130,6 +130,7 @@ elif choose == "HJH客单值&配套率":
         st.divider()
         st.subheader("杭嘉湖各门店客单值&配套率")
         st.write("数据自开业之日起")
+        st.dataframe(df7.iloc[:,:-1])
         st.bar_chart(df7['配套率.'])
         st.bar_chart(df7['客单值/万'])
         st.dataframe(df7.iloc[:,:-1])
