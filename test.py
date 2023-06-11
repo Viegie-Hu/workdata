@@ -128,11 +128,11 @@ elif choose == "HJH客单值&配套率":
         st.divider()
         st.subheader("杭嘉湖各门店客单值&配套率")
         st.write("数据自开业之日起")
-        st.dataframe(hjh_kdz.df_7(df2=df2))
+        st.dataframe(hjh_kdz.df_7(df2=df2).iloc[:,-1])
         st.divider()
         st.subheader("杭嘉湖各门店客单值&配套率")
         st.write("数据：2023年1月1日-2023年5月31日")
-        st.dataframe(hjh_kdz.df_7(df2=df8))
+        st.dataframe(hjh_kdz.df_7(df2=df8).iloc[:,-1])
     else:
         st.error("请输入或更正密码！", icon="🚨")
 elif choose == "J客单值&配套率":
