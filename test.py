@@ -7,6 +7,7 @@ import openpyxl
 import time
 from DayData import Daydata
 import os
+from HJH import KP
 today = datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
 quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
@@ -97,16 +98,44 @@ def kdz_data():
         st.bar_chart(df_kdz["客单值/万"])
     st.dataframe(df_kdz.iloc[:,:-1])
 
+# 日常运行客单值和配套率数据，避免每次打开界面重新读取
+hjh_kdz = KP('HJHsalesdata.csv')
+df2 = hjh_kdz.df_2()
+df8 = hjh_kdz.df_8(df2=df2)
 with st.sidebar:
     choose = st.sidebar.selectbox(
         "选择事项",
-        ("销售数据","出货数据","客单值及配套率","文件检索"))
+        ("销售数据","出货数据","HJH客单值&配套率","J客单值&配套率","文件检索"))
 
 if choose == "销售数据":
     xs_data()
     pass
-elif choose == "客单值及配套率":
-    secret_run = '1919'
+elif choose == "HJH客单值&配套率":
+    secret_input = st.text_input("请输入密码：")
+    if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
+        st.success("密码正确！", icon="✅")
+        st.header("杭嘉湖地区相关数据")
+        hjh_kdz_col0,hjh_kdz_col1 = st.columns(2)
+        with hjh_kdz_col0:
+            st.subheader("杭嘉湖地区床垫销量前20榜单")
+            st.dataframe(hjh_kdz.df_pm(df2=df2,pm="床垫"))
+        with hjh_kdz_col1:
+            st.subheader("杭嘉湖地区床架销量前20榜单")
+            st.dataframe(hjh_kdz.df_pm(df2=df2,pm="床架"))
+        st.divider()
+        st.subheader("杭嘉湖地区客单值&配套率")
+        st.dataframe(hjh_kdz.df_5(df2=df2))
+        st.divider()
+        st.subheader("杭嘉湖各门店客单值&配套率")
+        st.write("数据自开业之日起")
+        st.dataframe(hjh_kdz.df_7(df2=df2))
+        st.divider()
+        st.subheader("杭嘉湖各门店客单值&配套率")
+        st.write("数据：2023年1月1日-2023年5月31日")
+        st.dataframe(hjh_kdz.df_7(df2=df8))
+    else:
+        st.error("请输入或更正密码！", icon="🚨")
+elif choose == "J客单值&配套率":
     secret_input = st.text_input("请输入密码：")
     if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
         st.success("密码正确！", icon="✅")
@@ -114,7 +143,6 @@ elif choose == "客单值及配套率":
     else:
         st.error("请输入或更正密码！", icon="🚨")
 elif choose == "出货数据":
-    secret_run = "1919"
     secret_input = st.text_input("请输入密码：")
     if len(secret_run) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
         st.success("密码正确！", icon="✅")
