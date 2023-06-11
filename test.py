@@ -101,7 +101,9 @@ def kdz_data():
 # 日常运行客单值和配套率数据，避免每次打开界面重新读取
 hjh_kdz = KP('HJHsalesdata.csv')
 df2 = hjh_kdz.df_2()
+df7 = hjh_kdz.df_7(df2=df2).set_index('门店')
 df8 = hjh_kdz.df_8(df2=df2)
+df9 = hjh_kdz.df_7(df2=df8).set_index('门店')
 with st.sidebar:
     choose = st.sidebar.selectbox(
         "选择事项",
@@ -128,11 +130,15 @@ elif choose == "HJH客单值&配套率":
         st.divider()
         st.subheader("杭嘉湖各门店客单值&配套率")
         st.write("数据自开业之日起")
-        st.dataframe(hjh_kdz.df_7(df2=df2).iloc[:,-1])
+        st.bar_chart(df7['配套率.'])
+        st.bar_chart(df7['客单值/万'])
+        st.dataframe(df7.iloc[:,:-1])
         st.divider()
         st.subheader("杭嘉湖各门店客单值&配套率")
         st.write("数据：2023年1月1日-2023年5月31日")
-        st.dataframe(hjh_kdz.df_7(df2=df8).iloc[:,-1])
+        st.bar_chart(df9['配套率.'])
+        st.bar_chart(df9['客单值/万'])
+        st.dataframe(df9.iloc[:,:-1])
     else:
         st.error("请输入或更正密码！", icon="🚨")
 elif choose == "J客单值&配套率":
