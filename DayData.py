@@ -16,7 +16,7 @@ class Daydata():
 		self.daydata_filename = daydata_filename
 	def ta_data(self):
 	    df = pd.read_csv(self.daydata_filename,encoding='utf-8')
-	    df_cy = df.iloc[:,14:]#创建df副本
+	    df_cy = df.loc[:,"1.门店和姓名:一级标题":]#创建df副本
 	    df_cy.columns = ['门店',"销售","接待","电销","留资（电话）",
 	    "加微","售卡","派函","开单","销售额","今日总结","明日计划"]
 	    df_cy['时间'] = pd.to_datetime(df['开始答题时间']).dt.date
