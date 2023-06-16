@@ -57,7 +57,7 @@ def ch_data():
     # 出货数据
     st.header("出货数据")
     st.subheader(f"{quarter_today}及{month_today}出货完成率")
-    df = pd.read_excel("省联动.xlsx",sheet_name="出货数据")
+    df = pd.read_csv("CHdata.csv")
     df = df.loc[:,"嘉兴地区年度目标数据":]
     df.columns = df.iloc[0,:]
     df = df.set_index(["城市","项目"])
