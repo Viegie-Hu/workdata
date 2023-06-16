@@ -24,12 +24,12 @@ def xs_data():
     with col_data0:
         indcol0 = st.selectbox(
             "请选择门店或销售：",
-            ('门店',"销售"),
+            ("销售",'门店'),
             key=0)
     with col_data1:
         indcol1 = st.selectbox(
             "请选择想要查看的项目：",
-            ("接待","电销","留资（电话）","加微","售卡","派函","开单","销售额"),
+            ("销售额","接待","电销","留资（电话）","加微","售卡","派函","开单"),
             key=1)
     df_today = df_today.set_index(indcol0)
     st.bar_chart(df_today[indcol1])
@@ -42,12 +42,12 @@ def xs_data():
     with col_data2:
         indcol2 = st.selectbox(
             "请选择门店或销售：",
-            ('门店',"销售"),
+            ("销售",'门店',),
             key=2)
     with col_data3:
         indcol3 = st.selectbox(
             "请选择想要查看的项目：",
-            ("接待","电销","留资（电话）","加微","售卡","派函","开单","销售额"),
+            ("销售额","接待","电销","留资（电话）","加微","售卡","派函","开单",),
             key=3)
     #st.pyplot(a_today.draw_ta(df_all))
     df_all = df_all.set_index(indcol2)
@@ -90,7 +90,7 @@ def ch_data():
         label="海盐",
         value=str(int(df[quarter_today].iloc[7]*100))+" %",
         delta=str(int(df[month_today].iloc[7]*100))+" %",)
-    st.dataframe(df)
+    st.dataframe(df.iloc[:26,:])
 def kdz_data():
     # 客单数据
     st.header("客单值及配套率")
