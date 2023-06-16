@@ -64,12 +64,18 @@ def ch_data():
     df = df.fillna(0)
     df = df.iloc[2:,:].astype("float64")
     df = df.round(2)
-    col_me0,col_me1,col_me2,col_me3 = st.columns(4)
+    col_me00,col_me0 = st.columns(2)
+    col_me00.metric(
+        label="杭嘉湖地区",
+        value=str(int(df[quarter_today].iloc[22]*100))+" %",
+        delta=str(int(df[month_today].iloc[22]*100))+" %",
+        )
     col_me0.metric(
         label="嘉兴地区（含海盐/平湖）",
         value=str(int(df[quarter_today].iloc[17]*100))+" %",
         delta=str(int(df[month_today].iloc[17]*100))+" %",
         )
+    col_me1,col_me2,col_me3 = st.columns(3)
     col_me1.metric(
         label="嘉兴/海宁/桐乡",
         value=str(int(df[quarter_today].iloc[2]*100))+" %",
