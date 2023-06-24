@@ -8,6 +8,7 @@ import time
 from DayData import Daydata
 import os
 from HJH import KP
+from XSdata import XsData
 today = datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
 quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
@@ -113,7 +114,7 @@ df9 = hjh_kdz.df_7(df2=df8).set_index('门店')
 with st.sidebar:
     choose = st.sidebar.selectbox(
         "选择事项",
-        ("销售数据","出货数据","HJH客单值&配套率","J客单值&配套率","文件检索"))
+        ("销售数据","出货数据","杭嘉湖客&配","嘉兴客&配","销售数据A"))
 
 if choose == "销售数据":
     xs_data()
@@ -159,5 +160,19 @@ elif choose == "出货数据":
     if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
         st.success("密码正确！", icon="✅")
         ch_data()
+    else:
+        st.error("请输入或更正密码！", icon="🚨")
+elif choose == "销售数据A":
+    secret_input = st.text_input("请输入密码：")
+    #filepath = os.path.abspath(r"C:\Users\D2652\Desktop\workdata\hjhsaledata.csv")
+    hjh_xsdata = XsData('HJHsalesdata.csv')
+    if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
+        st.success("密码正确！", icon="✅")
+        start_date = st.date_input("开始日期",datetime.date(2020,1,1))
+        end_date = st.date_input("结束日期",datetime.date(2023,5,31))
+        df = hjh_xsdata.Dfdata(start_date,end_date)
+        aname = st.selectbox("请选择项目：",("金额","数量"))
+        df2 = hjh_xsdata.Df(df,aname)
+        st.dataframe(df2)
     else:
         st.error("请输入或更正密码！", icon="🚨")
