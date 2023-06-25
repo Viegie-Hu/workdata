@@ -22,7 +22,7 @@ class XsData():
         return df1_
         pass
     def Df(self,df,a="金额"):
-        df1 = df1_[["单据日期","门店",a]]
+        df1 = df[["单据日期","门店",a]]
         df1 = df1.groupby([df1["门店"],df1["单据日期"].apply(lambda x:x.month)]).sum()
         alist = df1.index.get_level_values(0).drop_duplicates()
         if a == "金额":
