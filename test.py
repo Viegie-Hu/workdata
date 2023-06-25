@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import datetime
+from datetime import date
 import pandas as pd
-from datetime import datetime
 import math
 import openpyxl
 import time
@@ -168,8 +168,8 @@ elif choose == "销售数据A":
     hjh_xsdata = XsData('HJHsalesdata.csv')
     if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
         st.success("密码正确！", icon="✅")
-        start_date = st.date_input("开始日期",datetime.date(2020,1,1))
-        end_date = st.date_input("结束日期",datetime.date(2023,5,31))
+        start_date = st.date_input("开始日期",date(2020,1,1))
+        end_date = st.date_input("结束日期",date(2023,5,31))
         df = hjh_xsdata.Dfdata(start_date,end_date)
         aname = st.selectbox("请选择项目：",("金额","数量"))
         df2 = hjh_xsdata.Df(df,aname)
