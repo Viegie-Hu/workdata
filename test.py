@@ -29,7 +29,7 @@ def xs_data():
     with col_data1:
         indcol1 = st.selectbox(
             "请选择想要查看的项目：",
-            ("销售额","接待","电销","留资（电话）","加微","售卡","派函","开单"),
+            ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单"),
             key=1)
     df_today = df_today.set_index(indcol0)
     st.bar_chart(df_today[indcol1])
@@ -47,7 +47,7 @@ def xs_data():
     with col_data3:
         indcol3 = st.selectbox(
             "请选择想要查看的项目：",
-            ("销售额","接待","电销","留资（电话）","加微","售卡","派函","开单",),
+            ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
             key=3)
     #st.pyplot(a_today.draw_ta(df_all))
     df_all = df_all.set_index(indcol2)
