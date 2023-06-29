@@ -18,13 +18,13 @@ class Daydata():
 	    df = pd.read_csv(self.daydata_filename,encoding='utf-8')
 	    df_cy = df.iloc[:,14:-1]#创建df副本
 	    df_cy.columns = ['门店',"销售","接待","电销","留资（电话）",
-	    "加微","售卡","派函","开单","销售额","今日总结","明日计划"]
+	    "加微","集赞","派函","开单","销售额","今日总结","明日计划"]
 	    df_cy['时间'] = pd.to_datetime(df['开始答题时间']).dt.date
 	    df_cy['时间'] = pd.to_datetime(df_cy['时间'])
 	    df_cy['时间2'] = daytime.today()
 	    df_today = df_cy[df_cy['时间']==df_cy['时间2']].iloc[:,:-1].sort_values('销售额',ascending=False)
 	    df_all = pd.pivot_table(df_cy,index = ['门店','销售'],values=['接待','电销','留资（电话）',
-	        '加微','售卡','派函','开单','销售额'],
+	        '加微','集赞','派函','开单','销售额'],
 	        aggfunc='sum').sort_values('销售额',ascending=False).reset_index()
 	    return df_today,df_all
 	def draw_ta(self,df_ta,ind_name="销售",col_name='销售额'):
