@@ -118,7 +118,7 @@ with st.sidebar:
 if choose == "销售数据":
     xs_data()
     pass
-elif choose == "HJH客单值&配套率":
+elif choose == "杭嘉湖客&配":
     secret_input = st.text_input("请输入密码：")
     if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
         st.success("密码正确！", icon="✅")
@@ -147,7 +147,7 @@ elif choose == "HJH客单值&配套率":
         st.dataframe(df9.iloc[:,:-1])
     else:
         st.error("请输入或更正密码！", icon="🚨")
-elif choose == "J客单值&配套率":
+elif choose == "嘉兴客&配":
     secret_input = st.text_input("请输入密码：")
     if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
         st.success("密码正确！", icon="✅")
