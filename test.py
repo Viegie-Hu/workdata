@@ -172,18 +172,4 @@ elif choose == "出货数据":
         ch_data()
     else:
         st.error("请输入或更正密码！", icon="🚨")
-'''
-elif choose == "销售数据A":
-    secret_input = st.text_input("请输入密码：")
-    #filepath = os.path.abspath(r"C:\Users\D2652\Desktop\workdata\hjhsaledata.csv")
-    hjh_xsdata = XsData('HJHsalesdata.csv')
-    if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["ch_secret"]:
-        st.success("密码正确！", icon="✅")
-        start_date = st.date_input("开始日期",datetime.date(2020,1,1))
-        end_date = st.date_input("结束日期",datetime.date(2023,5,31))
-        df = hjh_xsdata.Dfdata(start_date,end_date)
-        aname = st.selectbox("请选择项目：",("金额","数量"))
-        df2 = hjh_xsdata.Df(df,aname)
-        st.dataframe(df2)
-    else:
-        st.error("请输入或更正密码！", icon="🚨")'''
+
