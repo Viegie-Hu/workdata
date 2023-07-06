@@ -16,7 +16,7 @@ def xs_data():
     st.header("销售数据公示")
     #name = os.path.abspath(r"C:\Users\D2652\Desktop\workdata\daydata.csv")
     a_today = Daydata("daydata.csv")
-    df_today,df_all=a_today.ta_data()
+    df_today,df_all,df_xiaoshou,df_mendian=a_today.ta_data()
     #每日数据排名
     st.subheader("当日销售数据排名")
     st.text(str(today))
@@ -53,6 +53,11 @@ def xs_data():
     df_all = df_all.set_index(indcol2)
     st.bar_chart(df_all[indcol3])
     st.dataframe(df_all)
+    indcol4 = st.selectbox("请选择想要查看的项目：",
+        ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
+        key=3)
+    st.line_chart(df_xiaoshou[indcol4])
+    st.line_chart(df_mendian[indcol4])
 def ch_data():
     # 出货数据
     st.header("出货数据")

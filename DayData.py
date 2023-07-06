@@ -23,20 +23,15 @@ class Daydata():
 	    df_cy['时间'] = pd.to_datetime(df_cy['时间'])
 	    df_cy['时间2'] = daytime.today()
 	    df_today = df_cy[df_cy['时间']==df_cy['时间2']].iloc[:,:-1].sort_values('销售额',ascending=False)
-	    df_all = pd.pivot_table(df_cy,index = ['门店','销售'],values=['接待','电销','留资（电话）',
-	        '加微','集赞','派函','开单','销售额'],
-	        aggfunc='sum').sort_values('销售额',ascending=False).reset_index()
-	    return df_today,df_all
-	def draw_ta(self,df_ta,ind_name="销售",col_name='销售额'):
-	    #df_today,df_all = self.ta_data()
-	    x = df_ta[ind_name]
-	    y = df_ta[col_name]
-	    fig,ax = plt.subplots()
-	    plt.figure(dpi=500)
-	    ax.barh(x,height=0.5,width=y,align="center",label=col_name)
-	    for a,b in zip(x,y):
-	        ax.text(b,a,b,ha='right',va='center',fontsize=12,color='w')
-	    ax.legend()
-	    return fig
+	    df_all = pd.pivot_table(df_cy,index = ['门店','销售'],values=['接待','电销',
+	    	'留资（电话）','加微','集赞','派函','开单','销售额'],
+	    	aggfunc='sum').sort_values('销售额',ascending=False).reset_index()
+	    df_xiaoshou = pd.pivot_table(df1,index = ['时间'],columns='销售',
+	    	values=['接待','电销','留资（电话）','加微','集赞','派函','开单','销售额'],
+	    	aggfunc='sum')
+	    df_mendian = pd.pivot_table(df1,index = ['时间'],columns='门店',
+	    	values=['接待','电销','留资（电话）','加微','集赞','派函','开单','销售额'],
+	    	aggfunc='sum')
+	    return df_today,df_all,df_xiaoshou,df_mendian
 
 
