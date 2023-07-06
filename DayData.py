@@ -26,10 +26,10 @@ class Daydata():
 	    df_all = pd.pivot_table(df_cy,index = ['门店','销售'],values=['接待','电销',
 	    	'留资（电话）','加微','集赞','派函','开单','销售额'],
 	    	aggfunc='sum').sort_values('销售额',ascending=False).reset_index()
-	    df_xiaoshou = pd.pivot_table(df1,index = ['时间'],columns='销售',
+	    df_xiaoshou = pd.pivot_table(df_cy,index = ['时间'],columns='销售',
 	    	values=['接待','电销','留资（电话）','加微','集赞','派函','开单','销售额'],
 	    	aggfunc='sum')
-	    df_mendian = pd.pivot_table(df1,index = ['时间'],columns='门店',
+	    df_mendian = pd.pivot_table(df_cy,index = ['时间'],columns='门店',
 	    	values=['接待','电销','留资（电话）','加微','集赞','派函','开单','销售额'],
 	    	aggfunc='sum')
 	    return df_today,df_all,df_xiaoshou,df_mendian
