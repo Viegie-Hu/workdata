@@ -6,7 +6,7 @@ import openpyxl
 import time
 from DayData import Daydata
 import os
-from XSdata import XsData
+#from XSdata import XsData
 today = datetime.datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
 quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
@@ -58,10 +58,10 @@ def xs_data():
         ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
         key=4)
     st.text("各销售"+indcol4+"数据趋势变化")
-    st.area_chart(df_xiaoshou[indcol4])
+    st.line_chart(df_xiaoshou[indcol4])
     st.dataframe(df_xiaoshou[indcol4])
     st.text("各门店"+indcol4+"数据趋势变化")
-    st.area_chart(df_mendian[indcol4])
+    st.line_chart(df_mendian[indcol4])
     st.dataframe(df_mendian[indcol4])
 def ch_data():
     # 出货数据
