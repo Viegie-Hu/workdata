@@ -55,7 +55,7 @@ def xs_data():
     st.dataframe(df_all)
     indcol4 = st.selectbox("请选择想要查看的项目：",
         ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
-        key=3)
+        key=4)
     st.line_chart(df_xiaoshou[indcol4])
     st.line_chart(df_mendian[indcol4])
 def ch_data():
