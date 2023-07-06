@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import datetime
+import datetime
 import pandas as pd
 import math
 import openpyxl
@@ -8,7 +8,7 @@ from DayData import Daydata
 import os
 from HJH import KP
 from XSdata import XsData
-today = datetime.today()#获取日期
+today = datetime.datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
 quarter_today = "Q"+str(math.ceil(today.month/3))#获取季度
 
@@ -58,10 +58,10 @@ def xs_data():
     indcol4 = st.selectbox("请选择想要查看的项目：",
         ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
         key=4)
-    st.text("各销售销售数据趋势变化")
+    st.text("各销售"+indcol4+"数据趋势变化")
     st.line_chart(df_xiaoshou[indcol4])
     st.dataframe(df_xiaoshou[indcol4])
-    st.text("各门店销售数据趋势变化")
+    st.text("各门店"+indcol4+"数据趋势变化")
     st.line_chart(df_mendian[indcol4])
     st.dataframe(df_mendian[indcol4])
 def ch_data():
