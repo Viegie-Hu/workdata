@@ -112,7 +112,7 @@ df9 = hjh_kdz.df_7(df2=df8).set_index('门店')
 with st.sidebar:
     choose = st.sidebar.selectbox(
         "选择事项",
-        ("销售数据","出货数据","杭嘉湖客&配","嘉兴客&配","销售数据A"))
+        ("销售数据","出货数据","杭嘉湖客&配","销售数据A"))
 
 if choose == "销售数据":
     xs_data()
