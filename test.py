@@ -6,7 +6,6 @@ import openpyxl
 import time
 from DayData import Daydata
 import os
-from HJH import KP
 from XSdata import XsData
 today = datetime.datetime.today()#获取日期
 month_today = str(today.month)+'月'#获取月份
@@ -102,18 +101,6 @@ def ch_data():
         value=str(int(df[quarter_today].iloc[7]*100))+" %",
         delta=str(int(df[month_today].iloc[7]*100))+" %",)
     st.dataframe(df.iloc[:26,:])
-def kdz_data():
-    # 客单数据
-    st.header("客单值及配套率")
-    st.write("数据日期：2023年1月1日-2023年5月31日")
-    df_kdz = pd.read_excel("KDZ.xlsx",index_col=0)
-    df_kdz = df_kdz.set_index("门店")
-    col_kdz1,col_kdz2 = st.columns(2)
-    with col_kdz1:
-        st.bar_chart(df_kdz["配套率."])
-    with col_kdz2:
-        st.bar_chart(df_kdz["客单值/万"])
-    st.dataframe(df_kdz.iloc[:,:-1])
 
 # 日常运行客单值和配套率数据，避免每次打开界面重新读取
 hjh_kdz = KP('HJHsalesdata.csv')
@@ -156,13 +143,6 @@ elif choose == "杭嘉湖客&配":
         st.bar_chart(df9['配套率.'])
         st.bar_chart(df9['客单值'])
         st.dataframe(df9.iloc[:,:-1])
-    else:
-        st.error("请输入或更正密码！", icon="🚨")
-elif choose == "嘉兴客&配":
-    secret_input = st.text_input("请输入密码：")
-    if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
-        st.success("密码正确！", icon="✅")
-        kdz_data()
     else:
         st.error("请输入或更正密码！", icon="🚨")
 elif choose == "出货数据":
