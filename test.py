@@ -49,15 +49,21 @@ def xs_data():
             "请选择想要查看的项目：",
             ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
             key=3)
-    #st.pyplot(a_today.draw_ta(df_all))
     df_all = df_all.set_index(indcol2)
     st.bar_chart(df_all[indcol3])
     st.dataframe(df_all)
+    st.divider()
+    #数据趋势变化
+    st.subheader("数据趋势变化")
     indcol4 = st.selectbox("请选择想要查看的项目：",
         ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
         key=4)
+    st.text("各销售销售数据趋势变化")
     st.line_chart(df_xiaoshou[indcol4])
+    st.dataframe(df_xiaoshou[indcol4])
+    st.text("各门店销售数据趋势变化")
     st.line_chart(df_mendian[indcol4])
+    st.dataframe(df_mendian[indcol4])
 def ch_data():
     # 出货数据
     st.header("出货数据")
