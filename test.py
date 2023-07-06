@@ -59,10 +59,10 @@ def xs_data():
         ("销售额","接待","电销","留资（电话）","加微","集赞","派函","开单",),
         key=4)
     st.text("各销售"+indcol4+"数据趋势变化")
-    st.line_chart(df_xiaoshou[indcol4])
+    st.area_chart(df_xiaoshou[indcol4])
     st.dataframe(df_xiaoshou[indcol4])
     st.text("各门店"+indcol4+"数据趋势变化")
-    st.line_chart(df_mendian[indcol4])
+    st.area_chart(df_mendian[indcol4])
     st.dataframe(df_mendian[indcol4])
 def ch_data():
     # 出货数据
@@ -172,6 +172,7 @@ elif choose == "出货数据":
         ch_data()
     else:
         st.error("请输入或更正密码！", icon="🚨")
+'''
 elif choose == "销售数据A":
     secret_input = st.text_input("请输入密码：")
     #filepath = os.path.abspath(r"C:\Users\D2652\Desktop\workdata\hjhsaledata.csv")
@@ -185,4 +186,4 @@ elif choose == "销售数据A":
         df2 = hjh_xsdata.Df(df,aname)
         st.dataframe(df2)
     else:
-        st.error("请输入或更正密码！", icon="🚨")
+        st.error("请输入或更正密码！", icon="🚨")'''
