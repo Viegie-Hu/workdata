@@ -72,3 +72,4 @@ class KP():
         end_date = datetime.date(2023,5,31)
         df8 = df2[(df2['单据日期'] >= start_date)&(df2['单据日期'] <= end_date)]
         return df8
+        
