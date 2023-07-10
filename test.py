@@ -151,9 +151,8 @@ elif choose == "杭嘉湖客&配":
             st.write("开始日期：",date1)
         with coldate4:
             st.write("结束日期：",date2)
-        df8 = hjh_kdz.df_8(df2=df2,date1,date2)
+        df8 = hjh_kdz.df_8(df2=df2,date1=date1,date2=date2)
         df9 = hjh_kdz.df_7(df2=df8).set_index('门店')
-        st.write("数据：2023年1月1日-2023年5月31日")
         st.bar_chart(df9['配套率.'])
         st.bar_chart(df9['客单值'])
         st.dataframe(df9.iloc[:,:-1])
