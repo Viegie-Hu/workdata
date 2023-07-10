@@ -67,9 +67,9 @@ class KP():
         df7['客单值'] = round((df7['床架金额/万']+df7['床垫金额/万'])/(df7['床架数量']+df7['床垫数量']),2)
         df7['配套率.'] = round(df7['床架数量']/df7['床垫数量'],2)
         return df7
-    def df_8(self,df2):
-        start_date = datetime.date(2023,1,1)
-        end_date = datetime.date(2023,5,31)
+    def df_8(self,df2,date1,date2):
+        start_date = date1
+        end_date = date2
         df8 = df2[(df2['单据日期'] >= start_date)&(df2['单据日期'] <= end_date)]
         return df8
         

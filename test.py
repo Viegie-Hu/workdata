@@ -106,9 +106,7 @@ def ch_data():
 # 日常运行客单值和配套率数据，避免每次打开界面重新读取
 hjh_kdz = KP('HJHsalesdata.csv')
 df2 = hjh_kdz.df_2()
-df7 = hjh_kdz.df_7(df2=df2).set_index('门店')
-df8 = hjh_kdz.df_8(df2=df2)
-df9 = hjh_kdz.df_7(df2=df8).set_index('门店')
+
 with st.sidebar:
     choose = st.sidebar.selectbox(
         "选择事项",
@@ -118,6 +116,7 @@ if choose == "销售数据":
     xs_data()
     pass
 elif choose == "杭嘉湖客&配":
+    df7 = hjh_kdz.df_7(df2=df2).set_index('门店')
     secret_input = st.text_input("请输入密码：")
     if len(secret_input) > 0 and secret_input == st.secrets["Secrets"]["kdz_secret"]:
         st.success("密码正确！", icon="✅")
@@ -140,6 +139,20 @@ elif choose == "杭嘉湖客&配":
         st.dataframe(df7.iloc[:,:-1])
         st.divider()
         st.subheader("杭嘉湖各门店客单值&配套率")
+        coldate1,coldate2 = st.columns(2)
+        with coldate1:
+            date1 = st.date_input("选择开始日期",
+                datetime.date(2023,1,1))
+        with coldate2:
+            date2 = st.date_input("选择结束日期",
+                datetime.date(2023,6,1))
+        coldate3,coldate4 = st.columns(2)
+        with coldate3:
+            st.write("开始日期：",date1)
+        with coldate4:
+            st.write("结束日期：",date2)
+        df8 = hjh_kdz.df_8(df2=df2,date1,date2)
+        df9 = hjh_kdz.df_7(df2=df8).set_index('门店')
         st.write("数据：2023年1月1日-2023年5月31日")
         st.bar_chart(df9['配套率.'])
         st.bar_chart(df9['客单值'])
