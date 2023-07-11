@@ -68,6 +68,6 @@ class KP():
         df7['配套率.'] = round(df7['床架数量']/df7['床垫数量'],2)
         return df7
     def df_8(self,df2,date1,date2):
-        df8 = df2[(df2['单据日期'] >= data1)&(df2['单据日期'] <= date2)]
+        df8 = df2[(df2['单据日期'] >= date1)&(df2['单据日期'] <= date2)]
         return df8
         
